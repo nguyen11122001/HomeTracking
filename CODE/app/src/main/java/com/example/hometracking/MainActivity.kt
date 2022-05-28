@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -22,6 +23,7 @@ import com.example.hometracking.ui.theme.HomeTrackingTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             HomeTrackingTheme() {
                 // A surface container using the 'background' color from the theme
@@ -45,7 +47,7 @@ fun Navigation(navController: NavHostController){
             HomeScreen()}
         composable(NavigationItem.History.route)
         {
-            HistoryScreen()
+            HistoryScreen(data = listOf("Nguyễn Thuỳ Linh" , "Nguyễn Thuỳ Linh"))
         }
         composable(NavigationItem.Notification.route)
         {
