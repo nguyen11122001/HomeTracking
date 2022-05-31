@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/history_detail_layout"
+
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
@@ -19,14 +21,14 @@
             android:layout_height="wrap_content"
             android:text="Welcome!"
             android:textSize="30dp"
-            android:textColor="#100F0F"
+            android:textColor="#DD0707"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:text="Have a nice day"
-            android:textColor="#787878"
+            android:textColor="#060122"
             />
     </LinearLayout>
     <GridLayout
@@ -42,11 +44,31 @@
             android:layout_height="130dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="#D5F1F1F1"
+            app:cardBackgroundColor="#D5C794E6"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="8dp"
             >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="70dp"
+                android:text="5"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#D55D0F87"
+
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="MEMBERS"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:textColor="#D55D0F87"
+
+                ></TextView>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="130dp"
@@ -54,17 +76,57 @@
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp"
             android:layout_marginRight="8dp"
-            app:cardBackgroundColor="#D5F1F1F1"
+            app:cardBackgroundColor="#D5C794E6"
             >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="70dp"
+                android:text="13"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#D55D0F87"
+
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="CHECK IN TODAY"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:textColor="#D55D0F87"
+
+                ></TextView>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="130dp"
             android:layout_height="130dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="#D5F1F1F1"
+            app:cardBackgroundColor="#D5C794E6"
             >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="70dp"
+                android:text="4"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#D55D0F87"
+
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="CHECK IN FAILED"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:textColor="#D55D0F87"
+
+                ></TextView>
 
         </androidx.cardview.widget.CardView>
     </GridLayout>
