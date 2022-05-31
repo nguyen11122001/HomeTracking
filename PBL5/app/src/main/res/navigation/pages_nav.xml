@@ -25,4 +25,19 @@
         android:name="com.example.demoapp.HistoryDetailFragment"
         android:label="fragment_history_detail"
         tools:layout="@layout/fragment_history_detail" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.demoapp.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/memberFragment"
+        android:name="com.example.demoapp.MemberFragment"
+        android:label="fragment_member"
+        tools:layout="@layout/fragment_member" />
+    <fragment
+        android:id="@+id/memberDetailFragment"
+        android:name="com.example.demoapp.MemberDetailFragment"
+        android:label="fragment_member_detail"
+        tools:layout="@layout/fragment_member_detail" />
 </navigation>
