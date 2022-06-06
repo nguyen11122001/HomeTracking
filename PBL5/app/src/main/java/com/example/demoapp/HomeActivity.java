@@ -12,12 +12,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.demoapp.View.AccountFragment;
+import com.example.demoapp.View.HomeFragment;
+import com.example.demoapp.View.NotificationFragment;
 import com.example.demoapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private Toolbar topAppBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

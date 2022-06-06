@@ -7,37 +7,37 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.demoapp.HomeFragment"
+        android:name="com.example.demoapp.View.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.demoapp.NotificationFragment"
+        android:name="com.example.demoapp.View.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.demoapp.AccountFragment"
+        android:name="com.example.demoapp.View.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/historyDetailFragment"
-        android:name="com.example.demoapp.HistoryDetailFragment"
+        android:name="com.example.demoapp.View.HistoryDetailFragment"
         android:label="fragment_history_detail"
         tools:layout="@layout/fragment_history_detail" />
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.demoapp.HistoryFragment"
+        android:name="com.example.demoapp.View.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/memberFragment"
-        android:name="com.example.demoapp.MemberFragment"
+        android:name="com.example.demoapp.View.MemberFragment"
         android:label="fragment_member"
         tools:layout="@layout/fragment_member" />
     <fragment
         android:id="@+id/memberDetailFragment"
-        android:name="com.example.demoapp.MemberDetailFragment"
+        android:name="com.example.demoapp.View.MemberDetailFragment"
         android:label="fragment_member_detail"
         tools:layout="@layout/fragment_member_detail" />
 </navigation>

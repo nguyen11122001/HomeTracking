@@ -1,4 +1,4 @@
-package com.example.demoapp;
+package com.example.demoapp.View;
 
 import android.os.Bundle;
 

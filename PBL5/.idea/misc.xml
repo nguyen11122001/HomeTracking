@@ -53,10 +53,10 @@
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/fragment_history_detail.xml" value="0.10989583333333333" />
-        <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/fragment_home.xml" value="0.10989583333333333" />
+        <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/fragment_member.xml" value="0.25" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/fragment_member_detail.xml" value="0.25" />
-        <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/fragment_notification.xml" value="0.1" />
+        <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/fragment_notification.xml" value="0.2" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/history_item.xml" value="0.25" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/layout/member_item.xml" value="0.25" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/menu/navigation.xml" value="0.25" />
