@@ -40,7 +40,7 @@
             android:layout_marginLeft="50dp"
             android:hint="MEMBERS"
             android:inputType="text"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryTextColor"
             tools:ignore="MissingConstraints"></EditText>
     </RelativeLayout>
 
