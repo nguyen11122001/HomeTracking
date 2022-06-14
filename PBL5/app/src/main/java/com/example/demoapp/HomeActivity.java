@@ -7,20 +7,38 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.demoapp.Model.History;
 import com.example.demoapp.View.AccountFragment;
+import com.example.demoapp.View.HistoryFragment;
 import com.example.demoapp.View.HomeFragment;
 import com.example.demoapp.View.NotificationFragment;
 import com.example.demoapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
-    private Toolbar topAppBar;
+    private String Uid;
+
+    private DatabaseReference mDatabase;
+    private List<History> historyList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +46,44 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        topAppBar = findViewById(R.id.topAppBar);
-        //setSupportActionBar(topAppBar);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        topAppBar.setTitle("Home");
         loadFragment(new HomeFragment());
-    }
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            String value1 = bundle.getString("Key_1", "");
+            Toast.makeText(HomeActivity.this,value1,Toast.LENGTH_LONG).show();
+        }
 
-    @SuppressLint("ResourceType")
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.id.topAppBar, menu);
-        return true;
+        //enable offline capabilities
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //read new data every time database change
+        ValueEventListener postListener =
+        mDatabase.child("histories").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_LONG).show();
+                historyList.clear();
+                for(DataSnapshot item : dataSnapshot.getChildren()){
+                    History h = item.getValue(History.class);
+                    historyList.add(h);
+                }
+                for(History i : historyList){
+                    Log.d("DEBUG", "name: "+i.name+"time: "+i.time);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("DEBUG1", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -49,19 +91,20 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
+            android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
             switch (item.getItemId()) {
-                case R.id.nav_home:
-                    topAppBar.setTitle("Home");
-                    fragment = new HomeFragment();
+                case R.id.nav_history:
+                    fragment = new HistoryFragment();
+                    Bundle mBundle = new Bundle();
+                    mBundle.putSerializable("histories", (Serializable) historyList);
+                    fragment.setArguments(mBundle);
                     loadFragment(fragment);
                     return true;
-                case R.id.nav_notify:
-                    topAppBar.setTitle("Notification");
+                case R.id.nav_notification:
                     fragment = new NotificationFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.nav_account:
-                    topAppBar.setTitle("Profile");
                     fragment = new AccountFragment();
                     loadFragment(fragment);
                     return true;

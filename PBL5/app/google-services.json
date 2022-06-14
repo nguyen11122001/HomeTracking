@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "925069348280",
+    "firebase_url": "https://hometracking-e0982-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hometracking-e0982",
+    "storage_bucket": "hometracking-e0982.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925069348280:android:f1f3e849a9035b2551d34d",
+        "android_client_info": {
+          "package_name": "com.example.demoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925069348280-09v3fc2ud4vu22s06qlj4pl8arqdrbe9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIX1qB6jeVL_dppen3Xcz1e11ae07KL6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "925069348280-09v3fc2ud4vu22s06qlj4pl8arqdrbe9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
