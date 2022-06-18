@@ -24,9 +24,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.demoapp.HomeActivity;
 import com.example.demoapp.Model.History;
 import com.example.demoapp.R;
 import com.example.demoapp.ViewModel.HistoryAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -36,20 +42,44 @@ public class HistoryFragment extends Fragment {
     private ArrayList<History> histories = new ArrayList<>();
     private HistoryAdapter adapter;
     private Toolbar mToolBar;
+    private DatabaseReference mDatabase;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //get history list sent from activity
-        Bundle bundle = this.getArguments();
-        if(bundle != null){
-            histories = (ArrayList<History>) bundle.getSerializable("histories");
-            for (History i:
-                    histories) {
-                Log.d("DEBUG","fragment "+ i.name);
-            }
-        }
-        Log.d("DEBUG","image url "+ histories.get(0).url);
-        setHasOptionsMenu(true);
+//        Bundle bundle = this.getArguments();
+//        if(bundle != null){
+//            histories = (ArrayList<History>) bundle.getSerializable("histories");
+//            for (History i:
+//                    histories) {
+//                Log.d("DEBUG","fragment "+ i.name);
+//            }
+//        }
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //read new data every time database change
+        ValueEventListener postListener =
+                mDatabase.child("histories").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_LONG).show();
+                        histories.clear();
+                        for(DataSnapshot item : dataSnapshot.getChildren()){
+                            History h = item.getValue(History.class);
+                            histories.add(h);
+                        }
+                        for(History i : histories){
+                            Log.d("DEBUG", "name: "+i.name+"time: "+i.time);
+                        }
+                        adapter.setData(histories);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Getting Post failed, log a message
+                        Log.w("DEBUG", "loadPost:onCancelled", databaseError.toException());
+                    }
+                });
     }
 
     @Override
@@ -75,7 +105,7 @@ public class HistoryFragment extends Fragment {
         mToolBar = view.findViewById(R.id.topAppBar);
         mToolBar.getMenu().clear();
         mToolBar.inflateMenu(R.menu.top_app_bar);
-        mToolBar.setTitle("Histories");
+        mToolBar.setTitle("History");
         mToolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

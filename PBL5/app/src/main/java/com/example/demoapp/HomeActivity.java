@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(view);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        loadFragment(new HomeFragment());
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
@@ -59,31 +59,31 @@ public class HomeActivity extends AppCompatActivity {
         //enable offline capabilities
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        //read new data every time database change
-        ValueEventListener postListener =
-        mDatabase.child("histories").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_LONG).show();
-                historyList.clear();
-                for(DataSnapshot item : dataSnapshot.getChildren()){
-                    History h = item.getValue(History.class);
-                    historyList.add(h);
-                }
-                for(History i : historyList){
-                    Log.d("DEBUG", "name: "+i.name+"time: "+i.time);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w("DEBUG1", "loadPost:onCancelled", databaseError.toException());
-            }
-        });
-
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
+//
+//        //read new data every time database change
+//        ValueEventListener postListener =
+//        mDatabase.child("histories").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_LONG).show();
+//                historyList.clear();
+//                for(DataSnapshot item : dataSnapshot.getChildren()){
+//                    History h = item.getValue(History.class);
+//                    historyList.add(h);
+//                }
+//                for(History i : historyList){
+//                    Log.d("DEBUG", "name: "+i.name+"time: "+i.time);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w("DEBUG1", "loadPost:onCancelled", databaseError.toException());
+//            }
+//        });
+        loadFragment(new NotificationFragment(null));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -95,13 +95,13 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_history:
                     fragment = new HistoryFragment();
-                    Bundle mBundle = new Bundle();
-                    mBundle.putSerializable("histories", (Serializable) historyList);
-                    fragment.setArguments(mBundle);
+//                    Bundle mBundle = new Bundle();
+//                    mBundle.putSerializable("histories", (Serializable) historyList);
+//                    fragment.setArguments(mBundle);
                     loadFragment(fragment);
                     return true;
                 case R.id.nav_notification:
-                    fragment = new NotificationFragment();
+                    fragment = new NotificationFragment(null);
                     loadFragment(fragment);
                     return true;
                 case R.id.nav_account:
