@@ -15,8 +15,6 @@ import com.example.demoapp.R;
 
 public class AccountFragment extends Fragment {
 
-    private Button btnLogout;
-
 
     public AccountFragment() {
 
@@ -40,7 +38,7 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnLogout = view.findViewById(R.id.btn_logout);
+        Button btnLogout = view.findViewById(R.id.btn_logout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
