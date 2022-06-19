@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             Login(binding.txtEmail.getText().toString(),binding.txtPass.getText().toString());
+             //Login(binding.txtEmail.getText().toString(),binding.txtPass.getText().toString());
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
-
 
     }
     void Login(String Email , String pass)
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                             // If sign in fails, display a message to the user.
                        //     binding.txtStatus.setText(task.getException().toString());
                             Toast.makeText(MainActivity.this,"Login failed",Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });
