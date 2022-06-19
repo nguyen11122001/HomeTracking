@@ -38,9 +38,10 @@ public class HomeActivity extends AppCompatActivity {
         if (bundle != null) {
             String value1 = bundle.getString("Key_1", "");
             Toast.makeText(HomeActivity.this,value1,Toast.LENGTH_LONG).show();
-            
+
         }
     }
+
 
     @SuppressLint("ResourceType")
     @Override
