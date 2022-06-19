@@ -14,9 +14,12 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" ><meta-data android:name="android.app.searchable"
+            android:resource="@xml/searchable" /></activity>
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
