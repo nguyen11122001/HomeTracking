@@ -13,4 +13,8 @@
         android:id="@+id/nav_account"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Account"/>
+    <item
+        android:id="@+id/nav_update_img"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Upload image"/>
 </menu>

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.demoapp.Model.History;
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +35,8 @@ import java.util.Map;
 
 
 public class AccountFragment extends Fragment {
-    private Users user = new Users();
+    private Users user ;
+    private String email;
     private FirebaseAuth mAuth  ;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
@@ -78,6 +81,7 @@ public class AccountFragment extends Fragment {
         Log.d("TAG", "SDFSDFSD335");
 //        getDataFromFirestore();
 
+        email=mAuth.getCurrentUser().getEmail();
 
 
         if (getArguments() != null) {
@@ -98,7 +102,8 @@ public class AccountFragment extends Fragment {
 
         View view =inflater.inflate(R.layout.fragment_account, container, false);
         firestorezz.collection("Users")
-                .whereEqualTo("uid", "n0nQlANJHDYqdvjk1tLsWFhuj8Y2")
+//                .whereEqualTo("uid", "n0nQlANJHDYqdvjk1tLsWFhuj8Y2")
+                .whereEqualTo("uid", mAuth.getUid())
                 .get()
 
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -107,8 +112,20 @@ public class AccountFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("TAG", document.getId() + " => " + document.getData());
-                                Users user1= document.toObject(Users.class);
-                                ((TextView)view.findViewById(R.id.tv_name_acc)).setText(user1.name);
+                                user= document.toObject(Users.class);
+                                ((TextView)view.findViewById(R.id.tv_name_acc)).setText(user.name);
+                                ((TextView)view.findViewById(R.id.tv_phone)).setText(user.phone);
+                                ((TextView)view.findViewById(R.id.tv_mail)).setText(mAuth.getCurrentUser().getEmail());
+                                Picasso.get()
+                                        .load(user.url)
+                                        .fit()
+                                        .centerInside()
+                                        .into(((ImageView)view.findViewById(R.id.iv_avatar)));
+                                Picasso.get()
+                                        .load(user.url)
+                                        .fit()
+                                        .centerInside()
+                                        .into(((ImageView)view.findViewById(R.id.iv_avatar1)));
                             }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());

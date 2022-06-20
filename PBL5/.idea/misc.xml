@@ -77,6 +77,23 @@
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/menu/navigation.xml" value="0.25" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/menu/top_app_bar.xml" value="0.25" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/xml/searchable.xml" value="0.2046875" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.271" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.271" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.271" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/activity_home.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/activity_main.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/activity_upload.xml" value="0.32760416666666664" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_account.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_history.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_history_detail.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_home.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_member.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_member_detail.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_notification.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/fragment_upload.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/history_item.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/layout/member_item.xml" value="0.32653985507246375" />
+        <entry key="..\:/Users/ndvuong/Vuong/android/HomeTracking/PBL5/app/src/main/res/menu/navigation.xml" value="0.32760416666666664" />
       </map>
     </option>
   </component>

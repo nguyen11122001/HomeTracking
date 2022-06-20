@@ -20,6 +20,7 @@ import com.example.demoapp.View.AccountFragment;
 import com.example.demoapp.View.HistoryFragment;
 import com.example.demoapp.View.HomeFragment;
 import com.example.demoapp.View.NotificationFragment;
+import com.example.demoapp.View.UploadFragment;
 import com.example.demoapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -106,6 +107,10 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_account:
                     fragment = new AccountFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.nav_update_img:
+                    fragment = new UploadFragment();
                     loadFragment(fragment);
                     return true;
             }

@@ -40,4 +40,9 @@
         android:name="com.example.demoapp.View.MemberDetailFragment"
         android:label="fragment_member_detail"
         tools:layout="@layout/fragment_member_detail" />
+    <fragment
+        android:id="@+id/uploadFragment"
+        android:name="com.example.demoapp.View.UploadFragment"
+        android:label="fragment_member_detail"
+        tools:layout="@layout/fragment_member_detail" />
 </navigation>
