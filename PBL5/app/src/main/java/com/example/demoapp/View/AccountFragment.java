@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AccountFragment extends Fragment {
 
-    private Button btnLogout,btnAdd,btnPush;
+    private Button btnLogout,btnAdd,btnPush,btnList,btnTrain;
     Context thiscontext;
 
     public AccountFragment() {
@@ -45,6 +47,25 @@ public class AccountFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btn_logout);
         btnAdd = view.findViewById(R.id.btn_addUser);
         btnPush = view.findViewById(R.id.btn_pushImage);
+        btnList = view.findViewById(R.id.btn_listUser);
+        btnTrain = view.findViewById(R.id.btn_train);
+
+
+        btnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment  fragment2 = new UsersFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_container, fragment2);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

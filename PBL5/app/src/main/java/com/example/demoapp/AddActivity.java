@@ -52,9 +52,11 @@ public class AddActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 user = document.toObject(Users.class);
+                                user.setId(document.getId());
                                 listUser.add(user);
                                 listName.add(user.getName());
                                 Log.d("TAG", " Name: " + user.getName());
+                                Log.d("TAG", " Namec id: " + user.getId());
 
                             }
 
@@ -133,8 +135,8 @@ public class AddActivity extends AppCompatActivity {
                     }
 
                 }
+//sfsdfs
 
-                
 //                Intent intent = new Intent(getBaseContext(), AddActivity.class);
 //
 //                startActivity(intent);
