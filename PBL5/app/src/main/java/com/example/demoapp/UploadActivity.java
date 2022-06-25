@@ -33,6 +33,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -51,7 +53,7 @@ import java.util.UUID;
 
 public class UploadActivity extends AppCompatActivity
 {
-    private Button btnChoose, btnUpload,btnSelfie,btnCheck, btnAdd;
+    private Button btnChoose, btnUpload,btnSelfie,btnCheck, btnAdd,btnTrain;
     String currentPhotoPath;
     private Users user ;
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -72,6 +74,8 @@ public class UploadActivity extends AppCompatActivity
     StorageReference storageReference;
     FirebaseFirestore db ;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+
 
     private final int PICK_IMAGE_REQUEST = 71;
     @Override
@@ -94,6 +98,7 @@ public class UploadActivity extends AppCompatActivity
                         }
                     }
                 });
+
         countofimages=0;
         imgExist=false;
         imgFile=false;
@@ -102,13 +107,14 @@ public class UploadActivity extends AppCompatActivity
         btnUpload = findViewById(R.id.btnUpload1);
         btnSelfie = findViewById(R.id.btnSelfie);
         btnCheck  = findViewById(R.id.btnCheck);
+        btnTrain  = findViewById(R.id.btn_train);
         txtName   = findViewById(R.id.txtFolder);
         imageView = findViewById(R.id.imgView1);
         txt_count = findViewById(R.id.txtCount);
         fileName  = findViewById(R.id.edtFolder);
         spinner = (Spinner)findViewById(R.id.spinner);
 
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         db = FirebaseFirestore.getInstance();
@@ -121,6 +127,7 @@ public class UploadActivity extends AppCompatActivity
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 user = document.toObject(Users.class);
+                                user.setId(document.getId());
                                 listUser.add(user);
                                 listName.add(user.getName());
                                 Log.d("TAG", " Name: " + user.getName());
@@ -138,6 +145,14 @@ public class UploadActivity extends AppCompatActivity
                 android.R.layout.simple_spinner_item,listName);
         spinner.setAdapter(adapter);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        btnTrain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                train();
+            }
+        });
 
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +200,13 @@ public class UploadActivity extends AppCompatActivity
         });
 
         checkQuantity();
+    }
+    public void train() {
+//        mDatabase.set
+        FirebaseUser user = mAuth.getCurrentUser();
+        Log.d("TAG", "Error getting documents: key"+ mDatabase.getKey());
+        Log.d("TAG", "Error getting documents: key 222"+ user.getUid());
+        mDatabase.child("Test").child("Test").setValue(true);
     }
 
     private Boolean checkFolder(String name){
