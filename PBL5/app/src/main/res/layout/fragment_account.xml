@@ -16,5 +16,23 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="Logout" />
+        <Button
+            android:id="@+id/btn_addUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Add User" />
+        <Button
+            android:id="@+id/btn_listUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="List User" />
+        <Button
+            android:id="@+id/btn_pushImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Push Image" />
     </LinearLayout>
 </FrameLayout>
