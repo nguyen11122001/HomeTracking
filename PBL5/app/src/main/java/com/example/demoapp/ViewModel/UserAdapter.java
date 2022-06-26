@@ -25,9 +25,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
@@ -43,6 +47,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         public LinearLayout lnDel;
         private Button btnDel;
         FirebaseFirestore db;
+        FirebaseStorage storage ;
+        StorageReference storageRef ;
         private String id;
         private Users user;
 
@@ -59,6 +65,42 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             btnDel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    storage = FirebaseStorage.getInstance();
+                    storageRef = storage.getReference();
+
+                    ArrayList<String> listFile = new ArrayList<>();
+                    StorageReference listRef = storage.getReference().child("dataSet/"+user.getName());
+
+                    listRef.listAll()
+                            .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                                @Override
+                                public void onSuccess(ListResult listResult) {
+                                    for (StorageReference prefix : listResult.getPrefixes()) {
+                                        // All the prefixes under listRef.
+                                        // You may call listAll() recursively on them.
+                                    }
+
+                                    for (StorageReference item : listResult.getItems()) {
+                                        // All the items under listRef.
+                                        Log.d("TAG", "DocumentSnapshot successfully deleted! "+item.getName());
+                                        listFile.add(item.getName());
+
+                                    }
+                                    delete(listFile);
+                                    Log.d("TAG", "DocumentSnapshot successfully deleted! "+listFile);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Uh-oh, an error occurred!
+                                }
+                            });
+                    Log.d("TAG", "DocumentSnapshot successfully deleted! "+listFile);
+
+
+
+
 
                     db.collection("Users").document(id)
                             .delete()
@@ -68,6 +110,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                                     Log.d("TAG", "DocumentSnapshot successfully deleted! "+id);
                                     data.remove(user);
                                     setData2();
+                                    if (lnMain.getVisibility() == View.VISIBLE){
+                                        lnMain.setVisibility(View.INVISIBLE);
+                                        lnDel.setVisibility(View.VISIBLE);
+                                    }
+                                    else
+                                    {
+                                        lnMain.setVisibility(View.VISIBLE);
+                                        lnDel.setVisibility(View.INVISIBLE);
+                                    }
 
                                 }
                             })
@@ -112,6 +163,24 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                     viewDetail();
                 }
             });
+        }
+        public void delete(ArrayList<String> list){
+            for (String name: list) {
+                StorageReference desertRef = storageRef.child("dataSet/"+user.getName()+"/"+name);
+                // Delete the file
+                desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // File deleted successfully
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Uh-oh, an error occurred!
+                    }
+                });
+
+            }
         }
         public TextView getName() {
             return name;
