@@ -39,7 +39,8 @@ public class NotificationService extends Service {
                 {
                     NotificationDTO notificationDTO=dataSnapshot.getValue(NotificationDTO.class);
                     Log.d("debug1",notificationDTO.name );
-                    if(!notificationDTO.isVerified) {
+                    if(!notificationDTO.isNotifi) {
+                        myRef.child("notification/inf/isNotifi").setValue(true);
                         sendNotifcation("Thông báo mở cửa", notificationDTO.name + "\n" + notificationDTO.time);
                     }
                 }
