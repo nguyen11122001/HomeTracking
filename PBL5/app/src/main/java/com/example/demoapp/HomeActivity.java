@@ -16,12 +16,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.demoapp.Model.History;
+import com.example.demoapp.Model.NotificationDTO;
 import com.example.demoapp.View.AccountFragment;
 import com.example.demoapp.View.HistoryFragment;
 import com.example.demoapp.View.HomeFragment;
 import com.example.demoapp.View.NotificationFragment;
 import com.example.demoapp.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -37,7 +40,9 @@ public class HomeActivity extends AppCompatActivity {
     private String Uid;
 
     private DatabaseReference mDatabase;
-    private List<History> historyList = new ArrayList<>();
+    private List<History> histories = new ArrayList<>();
+    private NotificationDTO notify;
+    private Snackbar notifySnackBar ;
 
 
     @Override
@@ -60,34 +65,58 @@ public class HomeActivity extends AppCompatActivity {
             String value1 = bundle.getString("Key_1", "");
             Toast.makeText(HomeActivity.this,value1,Toast.LENGTH_LONG).show();
         }
+        notifySnackBar = Snackbar.make(view, "New notification", Snackbar.LENGTH_INDEFINITE)
+                .setAction("View", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Fragment fragment = new NotificationFragment(notify);
+                        loadFragment(fragment);
+                    }
+                });
 
         //enable offline capabilities
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//
-//        //read new data every time database change
-//        ValueEventListener postListener =
-//        mDatabase.child("histories").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_LONG).show();
-//                historyList.clear();
-//                for(DataSnapshot item : dataSnapshot.getChildren()){
-//                    History h = item.getValue(History.class);
-//                    historyList.add(h);
-//                }
-//                for(History i : historyList){
-//                    Log.d("DEBUG", "name: "+i.name+"time: "+i.time);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w("DEBUG1", "loadPost:onCancelled", databaseError.toException());
-//            }
-//        });
+        mDatabase = FirebaseDatabase.getInstance().getReference("UsersData/iH0qIYQfyzWzX5kQQRftJ1y422o2");
+
+        //read new data every time database change
+        ValueEventListener postListener =
+                mDatabase.child("histories").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_LONG).show();
+                        histories.clear();
+                        for(DataSnapshot item : dataSnapshot.getChildren()){
+                            History h = item.getValue(History.class);
+                            histories.add(h);
+                        }
+                        Collections.reverse(histories);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Getting Post failed, log a message
+                        Log.w("DEBUG", "loadPost:onCancelled", databaseError.toException());
+                    }
+                });
+
+        ValueEventListener notifyListener = mDatabase.child("notification").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot item : dataSnapshot.getChildren()){
+                    notify = item.getValue(NotificationDTO.class);
+                }
+                Log.d("DEBUG", notify.toString());
+                if(!notify.isVerified) notifySnackBar.show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("DEBUG", error.getMessage());
+            }
+        });
+
         loadFragment(new NotificationFragment(null));
     }
 
@@ -100,13 +129,13 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_history:
                     fragment = new HistoryFragment();
-//                    Bundle mBundle = new Bundle();
-//                    mBundle.putSerializable("histories", (Serializable) historyList);
-//                    fragment.setArguments(mBundle);
+                    Bundle mBundle = new Bundle();
+                    mBundle.putSerializable("histories", (Serializable) histories);
+                    fragment.setArguments(mBundle);
                     loadFragment(fragment);
                     return true;
                 case R.id.nav_notification:
-                    fragment = new NotificationFragment(null);
+                    fragment = new NotificationFragment((!notify.isVerified)?notify:null);
                     loadFragment(fragment);
                     return true;
                 case R.id.nav_account:

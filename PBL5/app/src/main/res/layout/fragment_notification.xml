@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginBottom="?attr/actionBarSize"
     >
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,22 +26,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         >
 
         <ImageView
             android:id="@+id/iv_notify_image"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="0dp"
+            android:layout_weight=".4"
             android:src="@drawable/photo2"
             android:scaleType="centerCrop"
             android:paddingBottom="20dp"
             />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight=".15"
             android:orientation="vertical"
             android:gravity="center"
+
             >
             <TextView
                 android:id="@+id/tv_notify"
@@ -48,38 +52,52 @@
                 android:layout_height="wrap_content"
                 android:text="Your name"
                 android:textStyle="bold"
-                android:textSize="40sp"
+                android:textSize="30sp"
+                android:textColor="@color/secondaryLightColor"
+                android:textAlignment="center"
+                android:padding="5dp"
+                />
+            <TextView
+                android:id="@+id/tv_notify_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="time here"
+                android:textStyle="normal"
+                android:textSize="15sp"
                 android:textColor="@color/secondaryLightColor"
                 android:textAlignment="center"
                 android:padding="5dp"
                 />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight=".2"
             android:gravity="center_horizontal"
+            android:orientation="vertical"
+
             >
+
             <Button
                 android:id="@+id/accept_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accept"
-                android:textSize="25sp"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="15dp"
-                android:layout_marginTop="5dp"
                 android:layout_centerInParent="true"
-                />
+                android:layout_marginTop="5dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="Accept"
+                android:textSize="25sp" />
+
             <Button
                 android:id="@+id/deny_button"
+                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
                 android:text="Deny"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_marginTop="14dp"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -90,6 +108,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="match_parent"
