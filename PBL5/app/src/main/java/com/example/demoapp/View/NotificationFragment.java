@@ -134,7 +134,7 @@ public class NotificationFragment extends Fragment {
             denyBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    data.isVerified = false;
+                    data.isVerified = true;
                     //update value
                     History newHistory = new History();
                     newHistory.name = data.name;
