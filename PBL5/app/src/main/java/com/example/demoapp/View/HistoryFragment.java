@@ -55,7 +55,7 @@ public class HistoryFragment extends Fragment {
 //                Log.d("DEBUG","fragment "+ i.name);
 //            }
 //        }
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("UsersData/iH0qIYQfyzWzX5kQQRftJ1y422o2");
 
         //read new data every time database change
         ValueEventListener postListener =

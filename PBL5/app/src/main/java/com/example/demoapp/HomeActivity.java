@@ -46,6 +46,11 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        Intent intentNof=new Intent(this,NotificationService.class);
+        intentNof.putExtra("userurl", "url");
+        startService(intentNof);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -57,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         //enable offline capabilities
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
 //
