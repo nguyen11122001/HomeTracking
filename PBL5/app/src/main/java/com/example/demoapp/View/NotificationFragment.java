@@ -126,6 +126,7 @@ public class NotificationFragment extends Fragment {
                                     Toast.makeText(getContext(),"S.O.S something went wrong :((",  Toast.LENGTH_LONG).show();
                                 }
                             });
+                    mDatabase.child("DoorStatus").setValue(1);
 
                 }
             });

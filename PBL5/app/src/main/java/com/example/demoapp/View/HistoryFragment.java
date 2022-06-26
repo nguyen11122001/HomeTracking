@@ -35,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,8 @@ public class HistoryFragment extends Fragment {
     private HistoryAdapter adapter;
     private Toolbar mToolBar;
     private DatabaseReference mDatabase;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,5 +161,12 @@ public class HistoryFragment extends Fragment {
 //            }
 //        };
 //        searchView.setOnQueryTextListener(queryTextListener);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void updateData(ArrayList<History> historyList){
+        historyList.forEach((i) -> Log.d("DEBUG","update data "+ i.name));
+//        histories.clear();
+//        histories = historyList;
+        adapter.setData(historyList);
     }
 }

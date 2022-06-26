@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
     private List<History> histories = new ArrayList<>();
     private NotificationDTO notify;
     private Snackbar notifySnackBar ;
+
+    private HistoryFragment historiesFragment =null;
 
 
     @Override
@@ -91,7 +94,9 @@ public class HomeActivity extends AppCompatActivity {
                             histories.add(h);
                         }
                         Collections.reverse(histories);
-
+                        if(historiesFragment !=null){
+                            historiesFragment.updateData((ArrayList<History>) histories);
+                        }
                     }
 
                     @Override
@@ -129,6 +134,7 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_history:
                     fragment = new HistoryFragment();
+                    historiesFragment = (HistoryFragment) fragment;
                     Bundle mBundle = new Bundle();
                     mBundle.putSerializable("histories", (Serializable) histories);
                     fragment.setArguments(mBundle);
