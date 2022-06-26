@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class History implements  Serializable{
-    public int id;
     public Boolean isAccepted;
     public String name;
     public String time;
@@ -22,7 +21,6 @@ public class History implements  Serializable{
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("id", id);
         result.put("isAccepted", isAccepted);
         result.put("name", name);
         result.put("time", time);

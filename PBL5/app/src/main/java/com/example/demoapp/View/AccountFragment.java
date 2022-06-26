@@ -20,6 +20,7 @@ import android.widget.Button;
 
 
 import com.example.demoapp.AddActivity;
+import com.example.demoapp.MainActivity;
 import com.example.demoapp.R;
 import com.example.demoapp.UploadActivity;
 import com.google.firebase.auth.FirebaseUser;
@@ -117,7 +118,7 @@ public class AccountFragment extends Fragment {
                 editor.putString("name","");
                 editor.putString("pass","");
                 editor.apply();
-                Intent intent=new Intent(getActivity(),MainActivity.class);
+                Intent intent=new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }

@@ -92,7 +92,10 @@
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/menu/navigation.xml" value="0.25" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/menu/top_app_bar.xml" value="0.25" />
         <entry key="..\:/Projects/HomeTracking/v1/HomeTracking/PBL5/app/src/main/res/xml/searchable.xml" value="0.2046875" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/navigation.xml" value="0.2203125" />
       </map>
     </option>
   </component>

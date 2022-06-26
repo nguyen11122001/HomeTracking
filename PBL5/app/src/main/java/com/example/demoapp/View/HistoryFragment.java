@@ -47,39 +47,15 @@ public class HistoryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //get history list sent from activity
-//        Bundle bundle = this.getArguments();
-//        if(bundle != null){
-//            histories = (ArrayList<History>) bundle.getSerializable("histories");
-//            for (History i:
-//                    histories) {
-//                Log.d("DEBUG","fragment "+ i.name);
-//            }
-//        }
-        mDatabase = FirebaseDatabase.getInstance().getReference("UsersData/iH0qIYQfyzWzX5kQQRftJ1y422o2");
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            histories = (ArrayList<History>) bundle.getSerializable("histories");
+            for (History i:
+                    histories) {
+                Log.d("DEBUG","fragment "+ i.name);
+            }
+        }
 
-        //read new data every time database change
-        ValueEventListener postListener =
-                mDatabase.child("histories").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        Toast.makeText(HomeActivity.this, "test", Toast.LENGTH_LONG).show();
-                        histories.clear();
-                        for(DataSnapshot item : dataSnapshot.getChildren()){
-                            History h = item.getValue(History.class);
-                            histories.add(h);
-                        }
-                        for(History i : histories){
-                            Log.d("DEBUG", "name: "+i.name+"time: "+i.time);
-                        }
-                        adapter.setData(histories);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // Getting Post failed, log a message
-                        Log.w("DEBUG", "loadPost:onCancelled", databaseError.toException());
-                    }
-                });
     }
 
     @Override
