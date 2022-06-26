@@ -2,6 +2,9 @@ package com.example.demoapp.View;
 
 import android.content.Context;
 import android.content.Intent;
+
+import android.content.SharedPreferences;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,10 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+
 import com.example.demoapp.AddActivity;
 import com.example.demoapp.R;
 import com.example.demoapp.UploadActivity;
 import com.google.firebase.auth.FirebaseUser;
+
 
 public class AccountFragment extends Fragment {
 
@@ -106,7 +111,15 @@ public class AccountFragment extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                SharedPreferences preferences=getActivity().getSharedPreferences("remember", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor =preferences.edit();
+                editor.putString("checkbox","false");
+                editor.putString("name","");
+                editor.putString("pass","");
+                editor.apply();
+                Intent intent=new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
     }

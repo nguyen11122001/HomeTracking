@@ -4,11 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.nfc.Tag;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import com.example.demoapp.databinding.ActivityMainBinding;
@@ -24,20 +23,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        mAuth = FirebaseAuth.getInstance();
+
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //Login(binding.txtEmail.getText().toString(),binding.txtPass.getText().toString());
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
+                String txtEmail=binding.txtEmail.getText().toString();
+                String txtPass=binding.txtPass.getText().toString();
+
+                if(txtEmail.length() !=0 && txtPass.length()!=0) {
+                    Login(txtEmail,txtPass);
+
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this,"Please entern Email or Passwork",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
     }
+
+
     void Login(String Email , String pass)
     {
         mAuth.signInWithEmailAndPassword(Email,pass)
@@ -45,21 +55,38 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            if(binding.checkboxIsRemember.isChecked())
+                            {
+                                SharedPreferences preferences=getSharedPreferences("remember",MODE_PRIVATE);
+                                SharedPreferences.Editor editor =preferences.edit();
+                                editor.putString("checkbox","true");
+                                editor.putString("name",Email);
+                                editor.putString("pass",pass);
+                                editor.apply();
+                            }
+                            else
+                            {
+                                SharedPreferences preferences=getSharedPreferences("remember",MODE_PRIVATE);
+                                SharedPreferences.Editor editor =preferences.edit();
+                                editor.putString("checkbox","false");
+                                editor.putString("name","");
+                                editor.putString("pass","");
+                                editor.apply();
+                            }
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putString("Key_1", user.getUid());
                             intent.putExtras(bundle);
                             startActivity(intent);
+                            finish();
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                       //     binding.txtStatus.setText(task.getException().toString());
+                        } else
+                        {
                             Toast.makeText(MainActivity.this,"Login failed",Toast.LENGTH_LONG).show();
-
                         }
                     }
                 });
     }
+
 }

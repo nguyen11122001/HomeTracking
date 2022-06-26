@@ -55,6 +55,12 @@
         <entry key="..\:/HK2-NAM3/PBL5/app/src/main/res/layout/fragment_home.xml" value="0.21875" />
         <entry key="..\:/HK2-NAM3/PBL5/app/src/main/res/layout/fragment_notification.xml" value="0.23854166666666668" />
         <entry key="..\:/HK2-NAM3/PBL5/app/src/main/res/menu/navigation.xml" value="0.1" />
+        <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/drawable/gradient_layout.xml" value="0.155" />
+        <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.155" />
+        <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.155" />
+        <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.155" />
+        <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.155" />
+        <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/drawable/ic_launcher_background.xml" value="0.155" />
         <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/layout/activity_home.xml" value="0.12158054711246201" />
         <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/layout/activity_main.xml" value="0.1403985507246377" />
         <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/layout/fragment_history_detail.xml" value="0.12158054711246201" />
@@ -62,6 +68,7 @@
         <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/layout/fragment_member.xml" value="0.12158054711246201" />
         <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/layout/fragment_member_detail.xml" value="0.12158054711246201" />
         <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/layout/fragment_notification.xml" value="0.12158054711246201" />
+        <entry key="..\:/Mobile/HomeTracking/PBL5/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.155" />
         <entry key="..\:/PBL5/HOME_TRACKING/PBL5/app/src/main/res/layout/activity_home.xml" value="0.23489583333333333" />
         <entry key="..\:/PBL5/HOME_TRACKING/PBL5/app/src/main/res/layout/activity_main.xml" value="0.23489583333333333" />
         <entry key="..\:/PBL5/HOME_TRACKING/PBL5/app/src/main/res/layout/fragment_account.xml" value="0.23489583333333333" />
