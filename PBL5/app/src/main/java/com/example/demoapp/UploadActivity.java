@@ -56,7 +56,7 @@ public class UploadActivity extends AppCompatActivity
     private Button btnChoose, btnUpload,btnSelfie,btnCheck, btnAdd,btnTrain;
     String currentPhotoPath;
     private Users user ;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 22;
     private ImageView imageView;
     private EditText fileName;
     private ArrayAdapter<String> adapter;
@@ -114,7 +114,7 @@ public class UploadActivity extends AppCompatActivity
         fileName  = findViewById(R.id.edtFolder);
         spinner = (Spinner)findViewById(R.id.spinner);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("UsersData/iH0qIYQfyzWzX5kQQRftJ1y422o2");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         db = FirebaseFirestore.getInstance();
@@ -203,10 +203,26 @@ public class UploadActivity extends AppCompatActivity
     }
     public void train() {
 //        mDatabase.set
-        FirebaseUser user = mAuth.getCurrentUser();
+//        FirebaseUser user = mAuth.getCurrentUser();
         Log.d("TAG", "Error getting documents: key"+ mDatabase.getKey());
-        Log.d("TAG", "Error getting documents: key 222"+ user.getUid());
-        mDatabase.child("Test").child("Test").setValue(true);
+//        Log.d("TAG", "Error getting documents: key 222"+ user.getUid());
+        mDatabase.child("trainData").child("train").setValue(true);
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Notification")
+                .setMessage("It training!!")
+                .setPositiveButton("GOT IT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
     }
 
     private Boolean checkFolder(String name){
@@ -450,11 +466,13 @@ public class UploadActivity extends AppCompatActivity
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//        File storageDir = getExternalFilesDir("Pictures2");
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
+
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
@@ -462,7 +480,8 @@ public class UploadActivity extends AppCompatActivity
 
     //save image by uri
     private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE);
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
@@ -475,8 +494,10 @@ public class UploadActivity extends AppCompatActivity
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
+                        "com.example.android.fileProvider32",
                         photoFile);
+                Log.d("tatata:",photoFile.toString());
+                Log.d("tatata3333333333333333:",photoURI.toString());
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 filePath2=photoURI;
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
