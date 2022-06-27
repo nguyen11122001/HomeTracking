@@ -49,6 +49,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class UploadActivity extends AppCompatActivity
@@ -82,7 +84,7 @@ public class UploadActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword("vuong2@gmail.com","Vuong2709@")
+        mAuth.signInWithEmailAndPassword("vunguyen@gmail.com","123456")
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -206,7 +208,10 @@ public class UploadActivity extends AppCompatActivity
 //        FirebaseUser user = mAuth.getCurrentUser();
         Log.d("TAG", "Error getting documents: key"+ mDatabase.getKey());
 //        Log.d("TAG", "Error getting documents: key 222"+ user.getUid());
-        mDatabase.child("trainData").child("train").setValue(true);
+        Map<String, Object> childUpdates = new HashMap<>();
+
+        childUpdates.put("/trainData/train" , true);
+        mDatabase.updateChildren(childUpdates);
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Notification")
                 .setMessage("It training!!")
